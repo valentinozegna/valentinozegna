@@ -12,7 +12,10 @@ from datetime import date, datetime, timezone
 USER = "valentinozegna"
 JOINED = date(2014, 3, 2)  # account creation date, drives Uptime and the commit range
 HW_START = date(2014, 11, 1)  # first hardware job, Berkeley Lab
-W = 56  # info column width in characters
+W = 56  # left column width in characters
+W2 = 46  # right column width in characters
+WIDTH = 880  # fills the README box; GitHub scales it down on narrow screens
+RIGHT_X = 490  # WIDTH - 30 margin - W2 chars at ~7.8px
 
 # two tokens by design: the Actions GITHUB_TOKEN yields the contribution-style
 # commit count (public + private activity), while a PAT (ACCESS_TOKEN secret)
@@ -128,25 +131,19 @@ PALETTES = {
 }
 
 
-def kv(key, val, width=W):
+def kv(key, val, width=W, color="v"):
     dots = "." * max(width - len(key) - len(str(val)) - 3, 1)
-    return [(f"{key}: ", "k"), (dots + " ", "d"), (str(val), "v")]
+    return [(f"{key}: ", "k"), (dots + " ", "d"), (str(val), color)]
 
 
-def kv2(k1, v1, k2, v2):
-    left = kv(k1, v1, 30)
-    return left + [(" | ", "d")] + kv(k2, v2, 23)
-
-
-def rule(title=""):
+def rule(title="", width=W):
     label = f"─ {title} " if title else ""
-    return [(label, "h"), ("─" * (W - len(label)), "d")]
+    return [(label, "h"), ("─" * (width - len(label)), "d")]
 
 
-def info_lines(s):
+def left_lines():
     y, m, d = age(JOINED, date.today())
     hy, hm, _ = age(HW_START, date.today())
-    n = lambda x: f"{x:,}"
     return [
         [(f"{USER}@github ", "h"), ("─" * (W - len(USER) - 8), "d")],
         [],
@@ -170,34 +167,53 @@ def info_lines(s):
         kv("Phones.Architected", "Pixel, 5 years"),
         kv("Air.Sampled", "PM2.5, from a wrist"),
         kv("Design.Reviews", "1 day → minutes, via agents"),
+    ]
+
+
+def right_lines(s):
+    n = lambda x: f"{x:,}"
+    r = lambda k, v, c="v": kv(k, v, W2, c)
+    return [
+        rule("Contact", W2),
+        r("Email", "valentino.zegna@gmail.com"),
+        r("LinkedIn", "in/valentinozegna"),
+        r("OSS", "IntelligentElectron/universal-netlist"),
         [],
-        rule("Contact"),
-        kv("Email", "valentino.zegna@gmail.com"),
-        kv("LinkedIn", "in/valentinozegna"),
-        kv("OSS", "IntelligentElectron/universal-netlist"),
+        rule("GitHub Stats", W2),
+        r("Repos", n(s["repos"])),
+        r("Contributed", n(s["contributed"])),
+        r("Stars", n(s["stars"])),
+        r("Commits", n(s["commits"])),
+        r("Followers", n(s["followers"])),
+        r("Lines of Code", n(s["loc"])),
+        r("Lines.Added", n(s["loc_add"]) + "++", "g"),
+        r("Lines.Deleted", n(s["loc_del"]) + "--", "r"),
         [],
-        rule("GitHub Stats"),
-        kv2("Repos", f"{s['repos']} {{Contributed: {s['contributed']}}}", "Stars", n(s["stars"])),
-        kv2("Commits", n(s["commits"]), "Followers", n(s["followers"])),
-        [("Lines of Code: ", "k"), (n(s["loc"]), "v"), (" ( ", "d"),
-         (n(s["loc_add"]) + "++", "g"), (", ", "d"), (n(s["loc_del"]) + "--", "r"), (" )", "d")],
+        rule("Projects", W2),
+        r("Universal Netlist MCP", "2025 → now"),
+        r("iPhone 12 Pro", "2018 → 2020"),
+        r("iPhone XR", "2017 → 2018"),
+        r("Fitbit Flyer", "2016 → 2017"),
+        r("Fitbit Alta", "2015 → 2016"),
+        r("Wearable PM2.5 Sensor", "2014 → 2015"),
     ]
 
 
 def render(mode, stats):
     p = PALETTES[mode]
-    lines = info_lines(stats)
-    w, h = 500, 50 + len(lines) * 21
+    cols = [(30, left_lines()), (RIGHT_X, right_lines(stats))]
+    h = 50 + max(len(lines) for _, lines in cols) * 21
     out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{h}" viewBox="0 0 {WIDTH} {h}" '
         'font-family="Consolas, Menlo, monospace" font-size="13px">',
-        f'<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="10" fill="{p["bg"]}" stroke="{p["border"]}"/>',
+        f'<rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{h - 1}" rx="10" fill="{p["bg"]}" stroke="{p["border"]}"/>',
     ]
-    for i, segs in enumerate(lines):
-        if not segs:
-            continue
-        spans = "".join(f'<tspan fill="{p[c]}">{html.escape(t)}</tspan>' for t, c in segs)
-        out.append(f'<text x="30" y="{35 + i * 21}" xml:space="preserve">{spans}</text>')
+    for x, lines in cols:
+        for i, segs in enumerate(lines):
+            if not segs:
+                continue
+            spans = "".join(f'<tspan fill="{p[c]}">{html.escape(t)}</tspan>' for t, c in segs)
+            out.append(f'<text x="{x}" y="{35 + i * 21}" xml:space="preserve">{spans}</text>')
     out.append("</svg>")
     return "\n".join(out)
 
@@ -207,9 +223,11 @@ def selfcheck():
     assert age(date(2000, 3, 31), date(2026, 4, 1)) == (26, 0, 1)
     assert age(date(2000, 1, 1), date(2026, 1, 1)) == (26, 0, 0)
     assert len("".join(t for t, _ in kv("OS", "macOS"))) == W
-    fake = {k: 0 for k in ("followers", "repos", "contributed", "stars", "commits", "loc", "loc_add", "loc_del")}
-    for segs in info_lines(fake):
-        assert len("".join(t for t, _ in segs)) <= W, segs
+    fake = {k: 10**7 for k in ("followers", "repos", "contributed", "stars", "commits", "loc", "loc_add", "loc_del")}
+    for lines, width in ((left_lines(), W), (right_lines(fake), W2)):
+        for segs in lines:
+            assert len("".join(t for t, _ in segs)) <= width, segs
+    assert len(left_lines()) == len(right_lines(fake))
 
 
 if __name__ == "__main__":

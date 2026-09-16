@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="722" viewBox="0 0 500 722" font-family="Consolas, Menlo, monospace" font-size="13px">
-<rect x="0.5" y="0.5" width="499" height="721" rx="10" fill="#0d1117" stroke="#30363d"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="512" viewBox="0 0 880 512" font-family="Consolas, Menlo, monospace" font-size="13px">
+<rect x="0.5" y="0.5" width="879" height="511" rx="10" fill="#0d1117" stroke="#30363d"/>
 <text x="30" y="35" xml:space="preserve"><tspan fill="#58a6ff">valentinozegna@github </tspan><tspan fill="#484f58">──────────────────────────────────</tspan></text>
 <text x="30" y="77" xml:space="preserve"><tspan fill="#ffa657">OS: </tspan><tspan fill="#484f58">.............................................. </tspan><tspan fill="#c9d1d9">macOS</tspan></text>
 <text x="30" y="98" xml:space="preserve"><tspan fill="#ffa657">Uptime: </tspan><tspan fill="#484f58">.................... </tspan><tspan fill="#c9d1d9">12 years, 6 months, 14 days</tspan></text>
@@ -19,12 +19,24 @@
 <text x="30" y="434" xml:space="preserve"><tspan fill="#ffa657">Phones.Architected: </tspan><tspan fill="#484f58">..................... </tspan><tspan fill="#c9d1d9">Pixel, 5 years</tspan></text>
 <text x="30" y="455" xml:space="preserve"><tspan fill="#ffa657">Air.Sampled: </tspan><tspan fill="#484f58">....................... </tspan><tspan fill="#c9d1d9">PM2.5, from a wrist</tspan></text>
 <text x="30" y="476" xml:space="preserve"><tspan fill="#ffa657">Design.Reviews: </tspan><tspan fill="#484f58">............ </tspan><tspan fill="#c9d1d9">1 day → minutes, via agents</tspan></text>
-<text x="30" y="518" xml:space="preserve"><tspan fill="#58a6ff">─ Contact </tspan><tspan fill="#484f58">──────────────────────────────────────────────</tspan></text>
-<text x="30" y="539" xml:space="preserve"><tspan fill="#ffa657">Email: </tspan><tspan fill="#484f58">....................... </tspan><tspan fill="#c9d1d9">valentino.zegna@gmail.com</tspan></text>
-<text x="30" y="560" xml:space="preserve"><tspan fill="#ffa657">LinkedIn: </tspan><tspan fill="#484f58">............................ </tspan><tspan fill="#c9d1d9">in/valentinozegna</tspan></text>
-<text x="30" y="581" xml:space="preserve"><tspan fill="#ffa657">OSS: </tspan><tspan fill="#484f58">............. </tspan><tspan fill="#c9d1d9">IntelligentElectron/universal-netlist</tspan></text>
-<text x="30" y="623" xml:space="preserve"><tspan fill="#58a6ff">─ GitHub Stats </tspan><tspan fill="#484f58">─────────────────────────────────────────</tspan></text>
-<text x="30" y="644" xml:space="preserve"><tspan fill="#ffa657">Repos: </tspan><tspan fill="#484f58">... </tspan><tspan fill="#c9d1d9">9 {Contributed: 10}</tspan><tspan fill="#484f58"> | </tspan><tspan fill="#ffa657">Stars: </tspan><tspan fill="#484f58">.............. </tspan><tspan fill="#c9d1d9">1</tspan></text>
-<text x="30" y="665" xml:space="preserve"><tspan fill="#ffa657">Commits: </tspan><tspan fill="#484f58">............... </tspan><tspan fill="#c9d1d9">5,274</tspan><tspan fill="#484f58"> | </tspan><tspan fill="#ffa657">Followers: </tspan><tspan fill="#484f58">.......... </tspan><tspan fill="#c9d1d9">0</tspan></text>
-<text x="30" y="686" xml:space="preserve"><tspan fill="#ffa657">Lines of Code: </tspan><tspan fill="#c9d1d9">886,240</tspan><tspan fill="#484f58"> ( </tspan><tspan fill="#3fb950">5,596,158++</tspan><tspan fill="#484f58">, </tspan><tspan fill="#f85149">4,709,918--</tspan><tspan fill="#484f58"> )</tspan></text>
+<text x="490" y="35" xml:space="preserve"><tspan fill="#58a6ff">─ Contact </tspan><tspan fill="#484f58">────────────────────────────────────</tspan></text>
+<text x="490" y="56" xml:space="preserve"><tspan fill="#ffa657">Email: </tspan><tspan fill="#484f58">............. </tspan><tspan fill="#c9d1d9">valentino.zegna@gmail.com</tspan></text>
+<text x="490" y="77" xml:space="preserve"><tspan fill="#ffa657">LinkedIn: </tspan><tspan fill="#484f58">.................. </tspan><tspan fill="#c9d1d9">in/valentinozegna</tspan></text>
+<text x="490" y="98" xml:space="preserve"><tspan fill="#ffa657">OSS: </tspan><tspan fill="#484f58">... </tspan><tspan fill="#c9d1d9">IntelligentElectron/universal-netlist</tspan></text>
+<text x="490" y="140" xml:space="preserve"><tspan fill="#58a6ff">─ GitHub Stats </tspan><tspan fill="#484f58">───────────────────────────────</tspan></text>
+<text x="490" y="161" xml:space="preserve"><tspan fill="#ffa657">Repos: </tspan><tspan fill="#484f58">..................................... </tspan><tspan fill="#c9d1d9">9</tspan></text>
+<text x="490" y="182" xml:space="preserve"><tspan fill="#ffa657">Contributed: </tspan><tspan fill="#484f58">.............................. </tspan><tspan fill="#c9d1d9">10</tspan></text>
+<text x="490" y="203" xml:space="preserve"><tspan fill="#ffa657">Stars: </tspan><tspan fill="#484f58">..................................... </tspan><tspan fill="#c9d1d9">1</tspan></text>
+<text x="490" y="224" xml:space="preserve"><tspan fill="#ffa657">Commits: </tspan><tspan fill="#484f58">............................... </tspan><tspan fill="#c9d1d9">5,274</tspan></text>
+<text x="490" y="245" xml:space="preserve"><tspan fill="#ffa657">Followers: </tspan><tspan fill="#484f58">................................. </tspan><tspan fill="#c9d1d9">0</tspan></text>
+<text x="490" y="266" xml:space="preserve"><tspan fill="#ffa657">Lines of Code: </tspan><tspan fill="#484f58">....................... </tspan><tspan fill="#c9d1d9">886,240</tspan></text>
+<text x="490" y="287" xml:space="preserve"><tspan fill="#ffa657">Lines.Added: </tspan><tspan fill="#484f58">..................... </tspan><tspan fill="#3fb950">5,596,158++</tspan></text>
+<text x="490" y="308" xml:space="preserve"><tspan fill="#ffa657">Lines.Deleted: </tspan><tspan fill="#484f58">................... </tspan><tspan fill="#f85149">4,709,918--</tspan></text>
+<text x="490" y="350" xml:space="preserve"><tspan fill="#58a6ff">─ Projects </tspan><tspan fill="#484f58">───────────────────────────────────</tspan></text>
+<text x="490" y="371" xml:space="preserve"><tspan fill="#ffa657">Universal Netlist MCP: </tspan><tspan fill="#484f58">............ </tspan><tspan fill="#c9d1d9">2025 → now</tspan></text>
+<text x="490" y="392" xml:space="preserve"><tspan fill="#ffa657">iPhone 12 Pro: </tspan><tspan fill="#484f58">................... </tspan><tspan fill="#c9d1d9">2018 → 2020</tspan></text>
+<text x="490" y="413" xml:space="preserve"><tspan fill="#ffa657">iPhone XR: </tspan><tspan fill="#484f58">....................... </tspan><tspan fill="#c9d1d9">2017 → 2018</tspan></text>
+<text x="490" y="434" xml:space="preserve"><tspan fill="#ffa657">Fitbit Flyer: </tspan><tspan fill="#484f58">.................... </tspan><tspan fill="#c9d1d9">2016 → 2017</tspan></text>
+<text x="490" y="455" xml:space="preserve"><tspan fill="#ffa657">Fitbit Alta: </tspan><tspan fill="#484f58">..................... </tspan><tspan fill="#c9d1d9">2015 → 2016</tspan></text>
+<text x="490" y="476" xml:space="preserve"><tspan fill="#ffa657">Wearable PM2.5 Sensor: </tspan><tspan fill="#484f58">........... </tspan><tspan fill="#c9d1d9">2014 → 2015</tspan></text>
 </svg>
