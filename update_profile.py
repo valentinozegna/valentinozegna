@@ -2,7 +2,6 @@
 
 Runs daily via GitHub Actions. Stdlib only, no dependencies.
 """
-import calendar
 import html
 import json
 import os
@@ -10,7 +9,7 @@ import urllib.request
 from datetime import date, datetime, timezone
 
 USER = "valentinozegna"
-JOINED = date(2014, 3, 2)  # account creation date, drives Uptime and the commit range
+JOINED = date(2014, 3, 2)  # account creation date, drives the commit range
 W = 56  # left column width in characters
 W2 = 46  # right column width in characters
 WIDTH = 880  # fills the README box; GitHub scales it down on narrow screens
@@ -38,17 +37,6 @@ def graphql(query, variables=None, token=None):
     if resp.get("errors"):
         raise RuntimeError(resp["errors"])
     return resp["data"]
-
-
-def age(b, t):
-    years = t.year - b.year - ((t.month, t.day) < (b.month, b.day))
-    months = (t.month - b.month - (t.day < b.day)) % 12
-    if t.day >= b.day:
-        days = t.day - b.day
-    else:
-        pm_year, pm = (t.year, t.month - 1) if t.month > 1 else (t.year - 1, 12)
-        days = calendar.monthrange(pm_year, pm)[1] - b.day + t.day
-    return years, months, days
 
 
 def fetch_stats():
@@ -138,17 +126,16 @@ def rule(title="", width=W):
 
 
 def left_lines():
-    y, m, d = age(JOINED, date.today())
     return [
         [(f"{USER}@github ", "h"), ("─" * (W - len(USER) - 8), "d")],
         kv("OS", "macOS"),
-        kv("Uptime", f"{y} years, {m} months, {d} days"),
         kv("Host", "Meta"),
         kv("Kernel", "AI x Hardware"),
         kv("IDE", "Claude Code, VS Code"),
         kv("Languages.Programming", "TypeScript, Python, JavaScript"),
         kv("Languages.Real", "Italian, English"),
         kv("Hobbies", "Photography"),
+        [],
         [],
         rule("Career.log"),
         kv("Boot", "Berkeley Lab → Fitbit → Apple → Google → Meta"),
@@ -196,9 +183,6 @@ def render(mode, stats):
 
 
 def selfcheck():
-    assert age(date(1989, 1, 15), date(2026, 7, 10)) == (37, 5, 25)
-    assert age(date(2000, 3, 31), date(2026, 4, 1)) == (26, 0, 1)
-    assert age(date(2000, 1, 1), date(2026, 1, 1)) == (26, 0, 0)
     assert len("".join(t for t, _ in kv("OS", "macOS"))) == W
     fake = {k: 10**7 for k in ("repos", "contributed", "commits", "loc", "loc_add", "loc_del")}
     for lines, width in ((left_lines(), W), (right_lines(fake), W2)):
