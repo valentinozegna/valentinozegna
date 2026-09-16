@@ -11,7 +11,6 @@ from datetime import date, datetime, timezone
 
 USER = "valentinozegna"
 JOINED = date(2014, 3, 2)  # account creation date, drives Uptime and the commit range
-HW_START = date(2014, 11, 1)  # first hardware job, Berkeley Lab
 W = 56  # left column width in characters
 W2 = 46  # right column width in characters
 WIDTH = 880  # fills the README box; GitHub scales it down on narrow screens
@@ -67,10 +66,9 @@ def fetch_stats():
     query {{
       user(login: "{USER}") {{
         id
-        followers {{ totalCount }}
         repositories(first: 100, ownerAffiliations: OWNER) {{
           totalCount
-          nodes {{ name stargazerCount isFork }}
+          nodes {{ name isFork }}
         }}
         repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, PULL_REQUEST, REPOSITORY]) {{
           totalCount
@@ -78,10 +76,8 @@ def fetch_stats():
       }}
     }}""", token=PRIV_TOKEN)["user"]
     stats = {
-        "followers": u["followers"]["totalCount"],
         "repos": u["repositories"]["totalCount"],
         "contributed": u["repositoriesContributedTo"]["totalCount"],
-        "stars": sum(n["stargazerCount"] for n in u["repositories"]["nodes"]),
         "commits": commits,
     }
     stats.update(loc([n["name"] for n in u["repositories"]["nodes"] if not n["isFork"]], u["id"]))
@@ -124,10 +120,10 @@ def loc(repo_names, user_id):
 
 
 PALETTES = {
-    "dark": {"bg": "#0d1117", "border": "#30363d", "h": "#58a6ff",
-             "k": "#ffa657", "v": "#c9d1d9", "d": "#484f58", "g": "#3fb950", "r": "#f85149"},
-    "light": {"bg": "#ffffff", "border": "#d0d7de", "h": "#0969da",
-              "k": "#953800", "v": "#24292f", "d": "#afb8c1", "g": "#1a7f37", "r": "#cf222e"},
+    "dark": {"bg": "#0b1020", "border": "#26304a", "h": "#7dd3fc",
+             "k": "#c4b5fd", "v": "#e2e8f0", "d": "#3b4560", "g": "#4ade80", "r": "#fb7185"},
+    "light": {"bg": "#fbfaff", "border": "#ddd6fe", "h": "#0369a1",
+              "k": "#6d28d9", "v": "#1e293b", "d": "#c7cedb", "g": "#15803d", "r": "#be123c"},
 }
 
 
@@ -143,30 +139,20 @@ def rule(title="", width=W):
 
 def left_lines():
     y, m, d = age(JOINED, date.today())
-    hy, hm, _ = age(HW_START, date.today())
     return [
         [(f"{USER}@github ", "h"), ("─" * (W - len(USER) - 8), "d")],
-        [],
         kv("OS", "macOS"),
         kv("Uptime", f"{y} years, {m} months, {d} days"),
-        kv("Host", "Meta Reality Labs"),
-        kv("Kernel", "AI Transformation Lead, HW Eng"),
+        kv("Host", "Meta"),
+        kv("Kernel", "AI x Hardware"),
         kv("IDE", "Claude Code, VS Code"),
-        [],
         kv("Languages.Programming", "TypeScript, Python, JavaScript"),
-        kv("Languages.Copper", "Schematics, PCB layout"),
         kv("Languages.Real", "Italian, English"),
+        kv("Hobbies", "Photography"),
         [],
         rule("Career.log"),
         kv("Boot", "Berkeley Lab → Fitbit → Apple → Google → Meta"),
-        kv("Hardware.Uptime", f"{hy} years, {hm} months"),
         kv("Form.Factors", "wrist → pocket → face"),
-        kv("Wrists.Shipped", "1M+ Fitbit Alta at launch"),
-        kv("Cameras.Integrated", "iPhone XR, front + rear"),
-        kv("Batteries.Flexed", "iPhone 12 & 12 Pro"),
-        kv("Phones.Architected", "Pixel, 5 years"),
-        kv("Air.Sampled", "PM2.5, from a wrist"),
-        kv("Design.Reviews", "1 day → minutes, via agents"),
     ]
 
 
@@ -177,32 +163,23 @@ def right_lines(s):
         rule("Contact", W2),
         r("Email", "valentino.zegna@gmail.com"),
         r("LinkedIn", "in/valentinozegna"),
-        r("OSS", "IntelligentElectron/universal-netlist"),
+        r("Photography", "valentinozegna.com"),
         [],
         rule("GitHub Stats", W2),
         r("Repos", n(s["repos"])),
         r("Contributed", n(s["contributed"])),
-        r("Stars", n(s["stars"])),
         r("Commits", n(s["commits"])),
-        r("Followers", n(s["followers"])),
+        [],
         r("Lines of Code", n(s["loc"])),
         r("Lines.Added", n(s["loc_add"]) + "++", "g"),
         r("Lines.Deleted", n(s["loc_del"]) + "--", "r"),
-        [],
-        rule("Projects", W2),
-        r("Universal Netlist MCP", "2025 → now"),
-        r("iPhone 12 Pro", "2018 → 2020"),
-        r("iPhone XR", "2017 → 2018"),
-        r("Fitbit Flyer", "2016 → 2017"),
-        r("Fitbit Alta", "2015 → 2016"),
-        r("Wearable PM2.5 Sensor", "2014 → 2015"),
     ]
 
 
 def render(mode, stats):
     p = PALETTES[mode]
     cols = [(30, left_lines()), (RIGHT_X, right_lines(stats))]
-    h = 50 + max(len(lines) for _, lines in cols) * 21
+    h = 42 + max(len(lines) for _, lines in cols) * 21
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{h}" viewBox="0 0 {WIDTH} {h}" '
         'font-family="Consolas, Menlo, monospace" font-size="13px">',
@@ -223,7 +200,7 @@ def selfcheck():
     assert age(date(2000, 3, 31), date(2026, 4, 1)) == (26, 0, 1)
     assert age(date(2000, 1, 1), date(2026, 1, 1)) == (26, 0, 0)
     assert len("".join(t for t, _ in kv("OS", "macOS"))) == W
-    fake = {k: 10**7 for k in ("followers", "repos", "contributed", "stars", "commits", "loc", "loc_add", "loc_del")}
+    fake = {k: 10**7 for k in ("repos", "contributed", "commits", "loc", "loc_add", "loc_del")}
     for lines, width in ((left_lines(), W), (right_lines(fake), W2)):
         for segs in lines:
             assert len("".join(t for t, _ in segs)) <= width, segs
