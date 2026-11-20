@@ -18,8 +18,8 @@
 <text x="490" y="140" xml:space="preserve"><tspan fill="#0369a1">─ GitHub Stats </tspan><tspan fill="#c7cedb">───────────────────────────────</tspan></text>
 <text x="490" y="161" xml:space="preserve"><tspan fill="#6d28d9">Repos: </tspan><tspan fill="#c7cedb">.................................... </tspan><tspan fill="#1e293b">13</tspan></text>
 <text x="490" y="182" xml:space="preserve"><tspan fill="#6d28d9">Contributed: </tspan><tspan fill="#c7cedb">.............................. </tspan><tspan fill="#1e293b">11</tspan></text>
-<text x="490" y="203" xml:space="preserve"><tspan fill="#6d28d9">Commits: </tspan><tspan fill="#c7cedb">............................... </tspan><tspan fill="#1e293b">8,901</tspan></text>
-<text x="490" y="245" xml:space="preserve"><tspan fill="#6d28d9">Lines of Code: </tspan><tspan fill="#c7cedb">....................... </tspan><tspan fill="#1e293b">932,192</tspan></text>
-<text x="490" y="266" xml:space="preserve"><tspan fill="#6d28d9">Lines.Added: </tspan><tspan fill="#c7cedb">..................... </tspan><tspan fill="#15803d">1,095,877++</tspan></text>
-<text x="490" y="287" xml:space="preserve"><tspan fill="#6d28d9">Lines.Deleted: </tspan><tspan fill="#c7cedb">..................... </tspan><tspan fill="#be123c">163,685--</tspan></text>
+<text x="490" y="203" xml:space="preserve"><tspan fill="#6d28d9">Commits: </tspan><tspan fill="#c7cedb">............................... </tspan><tspan fill="#1e293b">8,903</tspan></text>
+<text x="490" y="245" xml:space="preserve"><tspan fill="#6d28d9">Lines of Code: </tspan><tspan fill="#c7cedb">....................... </tspan><tspan fill="#1e293b">385,612</tspan></text>
+<text x="490" y="266" xml:space="preserve"><tspan fill="#6d28d9">Lines.Added: </tspan><tspan fill="#c7cedb">....................... </tspan><tspan fill="#15803d">499,978++</tspan></text>
+<text x="490" y="287" xml:space="preserve"><tspan fill="#6d28d9">Lines.Deleted: </tspan><tspan fill="#c7cedb">..................... </tspan><tspan fill="#be123c">114,366--</tspan></text>
 </svg>
